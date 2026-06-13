@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="구글 앱스 스크립트(Google Apps Script) 활용법 안내">
+    <title>Google Apps Script 가이드</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <header class="glass-panel header">
+        <h1>Google Apps Script 시작하기</h1>
+        <p>업무 자동화의 강력한 도구, GAS를 활용하여 스마트하게 일하세요.</p>
+    </header>
+
+    <main class="container">
+        <section class="glass-panel feature">
+            <h2>Apps Script란?</h2>
+            <p>Google Workspace 기반의 경량 애플리케이션 개발 플랫폼입니다. 자바스크립트를 사용하여 Gmail, 스프레드시트, 드라이브 등 다양한 Google 서비스를 자동화하고 유기적으로 연동할 수 있습니다.</p>
+        </section>
+
+        <section class="use-cases">
+            <div class="glass-panel card">
+                <div class="icon" style="background: #e8f0fe; color: #1a73e8;">📊</div>
+                <h3>스프레드시트 자동화</h3>
+                <p>반복되는 데이터 입력, 정리 및 분석 작업을 자동화하여 업무 소요 시간을 획기적으로 단축하세요.</p>
+            </div>
+            <div class="glass-panel card">
+                <div class="icon" style="background: #fce8e6; color: #d93025;">📧</div>
+                <h3>이메일 연동</h3>
+                <p>특정 조건에 맞는 이메일을 자동으로 발송하거나, 수신된 이메일을 스프레드시트로 분류할 수 있습니다.</p>
+            </div>
+            <div class="glass-panel card">
+                <div class="icon" style="background: #e6f4ea; color: #1e8e3e;">⚙️</div>
+                <h3>사용자 정의 함수</h3>
+                <p>기본 제공 함수로 해결하기 어려운 복잡한 계산식이나 로직을 직접 자바스크립트로 구현하여 사용하세요.</p>
+            </div>
+        </section>
+
+        <section class="glass-panel code-section">
+            <h2>첫 번째 스크립트 작성하기</h2>
+            <p>스프레드시트 데이터를 기반으로 이메일을 발송하는 간단한 예제입니다.</p>
+            <div class="code-block">
+<pre><code>function sendWelcomeEmail() {
+  // 발송할 이메일 주소 및 내용 설정
+  var emailAddress = "user@example.com";
+  var subject = "Apps Script 세계에 오신 것을 환영합니다!";
+  var message = "이 이메일은 Google Apps Script를 통해 자동으로 발송되었습니다.";
+  
+  // 이메일 전송
+  MailApp.sendEmail(emailAddress, subject, message);
+}</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Google Apps Script Guide</p>
+    </footer>
+</body>
+</html>
