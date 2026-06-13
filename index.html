@@ -33,9 +33,9 @@
                 <p>반복되는 데이터 입력, 정리 및 분석 작업을 자동화하여 업무 소요 시간을 획기적으로 단축하세요.</p>
             </div>
             <div class="glass-panel card">
-                <div class="icon" style="background: #fce8e6; color: #d93025;">📧</div>
-                <h3>이메일 연동</h3>
-                <p>특정 조건에 맞는 이메일을 자동으로 발송하거나, 수신된 이메일을 스프레드시트로 분류할 수 있습니다.</p>
+                <div class="icon" style="background: #fce8e6; color: #d93025;">📅</div>
+                <h3>일정 자동 등록</h3>
+                <p>스프레드시트에 입력된 일정 데이터를 기반으로 구글 캘린더에 이벤트를 자동으로 생성합니다.</p>
             </div>
             <div class="glass-panel card">
                 <div class="icon" style="background: #e6f4ea; color: #1e8e3e;">⚙️</div>
@@ -46,16 +46,17 @@
 
         <section class="glass-panel code-section">
             <h2>첫 번째 스크립트 작성하기</h2>
-            <p>스프레드시트 데이터를 기반으로 이메일을 발송하는 간단한 예제입니다.</p>
+            <p>구글 캘린더에 새로운 일정을 생성하는 간단한 예제입니다.</p>
             <div class="code-block">
-<pre><code>function sendWelcomeEmail() {
-  // 발송할 이메일 주소 및 내용 설정
-  var emailAddress = "user@example.com";
-  var subject = "Apps Script 세계에 오신 것을 환영합니다!";
-  var message = "이 이메일은 Google Apps Script를 통해 자동으로 발송되었습니다.";
+<pre><code>function createCalendarEvent() {
+  // 캘린더와 이벤트 정보 설정
+  var calendar = CalendarApp.getDefaultCalendar();
+  var title = "주간 업무 회의";
+  var startTime = new Date('2026-06-15T10:00:00');
+  var endTime = new Date('2026-06-15T11:00:00');
   
-  // 이메일 전송
-  MailApp.sendEmail(emailAddress, subject, message);
+  // 이벤트 생성
+  calendar.createEvent(title, startTime, endTime);
 }</code></pre>
             </div>
         </section>
