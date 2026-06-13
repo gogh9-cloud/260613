@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="구글 앱스 스크립트(Google Apps Script) 활용법 안내">
-    <title>Google Apps Script 가이드</title>
+    <meta name="description" content="학급 퀴즈 자동화를 위한 구글 앱스 스크립트(Google Apps Script) 활용법 안내">
+    <title>학급 퀴즈 자동화 가이드</title>
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -16,54 +16,58 @@
     </div>
     
     <header class="glass-panel header">
-        <h1>Google Apps Script 시작하기</h1>
-        <p>업무 자동화의 강력한 도구, GAS를 활용하여 스마트하게 일하세요.</p>
+        <h1>학급 퀴즈 자동화 시작하기</h1>
+        <p>Apps Script를 활용하여 퀴즈 채점과 피드백을 자동화하고 스마트하게 학급을 관리하세요.</p>
     </header>
 
     <main class="container">
         <section class="glass-panel feature">
-            <h2>Apps Script란?</h2>
-            <p>Google Workspace 기반의 경량 애플리케이션 개발 플랫폼입니다. 자바스크립트를 사용하여 Gmail, 스프레드시트, 드라이브 등 다양한 Google 서비스를 자동화하고 유기적으로 연동할 수 있습니다.</p>
+            <h2>퀴즈 자동화란?</h2>
+            <p>구글 폼으로 수합된 학생들의 퀴즈 응답을 자동으로 채점하고, 오답 노트나 맞춤형 피드백을 학생 개별 이메일로 전송하는 등 교사의 반복적인 학급 관리 업무를 자바스크립트 기반의 Apps Script로 자동화하는 것을 의미합니다.</p>
         </section>
 
         <section class="use-cases">
             <div class="glass-panel card">
-                <div class="icon" style="background: #e8f0fe; color: #1a73e8;">📊</div>
-                <h3>스프레드시트 자동화</h3>
-                <p>반복되는 데이터 입력, 정리 및 분석 작업을 자동화하여 업무 소요 시간을 획기적으로 단축하세요.</p>
+                <div class="icon" style="background: #e8f0fe; color: #1a73e8;">📝</div>
+                <h3>자동 채점 시스템</h3>
+                <p>학생들의 구글 폼 제출과 동시에 스프레드시트에서 정답을 비교하여 점수를 자동으로 계산합니다.</p>
             </div>
             <div class="glass-panel card">
-                <div class="icon" style="background: #fce8e6; color: #d93025;">📅</div>
-                <h3>일정 자동 등록</h3>
-                <p>스프레드시트에 입력된 일정 데이터를 기반으로 구글 캘린더에 이벤트를 자동으로 생성합니다.</p>
+                <div class="icon" style="background: #fce8e6; color: #d93025;">📧</div>
+                <h3>맞춤형 피드백 메일</h3>
+                <p>채점 결과와 함께 틀린 문제에 대한 해설 및 오답 노트를 학생 개별 이메일로 자동 발송합니다.</p>
             </div>
             <div class="glass-panel card">
-                <div class="icon" style="background: #e6f4ea; color: #1e8e3e;">⚙️</div>
-                <h3>사용자 정의 함수</h3>
-                <p>기본 제공 함수로 해결하기 어려운 복잡한 계산식이나 로직을 직접 자바스크립트로 구현하여 사용하세요.</p>
+                <div class="icon" style="background: #e6f4ea; color: #1e8e3e;">📊</div>
+                <h3>성적 통계 분석</h3>
+                <p>반별, 학생별 성적 분포와 문항별 정답률을 자동으로 분석하여 직관적인 대시보드를 구성합니다.</p>
             </div>
         </section>
 
         <section class="glass-panel code-section">
-            <h2>첫 번째 스크립트 작성하기</h2>
-            <p>구글 캘린더에 새로운 일정을 생성하는 간단한 예제입니다.</p>
+            <h2>퀴즈 자동 채점 스크립트 예제</h2>
+            <p>구글 폼 제출 시 자동으로 실행되어 점수를 계산하고 메일을 보내는 간단한 예제입니다.</p>
             <div class="code-block">
-<pre><code>function createCalendarEvent() {
-  // 캘린더와 이벤트 정보 설정
-  var calendar = CalendarApp.getDefaultCalendar();
-  var title = "주간 업무 회의";
-  var startTime = new Date('2026-06-15T10:00:00');
-  var endTime = new Date('2026-06-15T11:00:00');
+<pre><code>function onQuizSubmit(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var row = e.range.getRow();
+  var responses = e.values;
   
-  // 이벤트 생성
-  calendar.createEvent(title, startTime, endTime);
+  // 간단한 채점 (예: 2, 3번 문항)
+  var score = 0;
+  if (responses[1] === "정답1") score += 50;
+  if (responses[2] === "정답2") score += 50;
+  
+  // 점수 기록 및 메일 전송
+  sheet.getRange(row, 4).setValue(score);
+  MailApp.sendEmail(responses[3], "퀴즈 결과", score + "점 입니다.");
 }</code></pre>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Google Apps Script Guide</p>
+        <p>© 2026 Google Apps Script Classroom Guide</p>
     </footer>
 </body>
 </html>
